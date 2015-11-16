@@ -1,0 +1,27 @@
+{
+  "name": "click",
+  "version": "1.0.0",
+  "description": "Cisco Meraki Click-through Captive Portal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Cisco",
+    "Meraki",
+    "Splash",
+    "Page",
+    "Captive",
+    "Portal",
+    "EXCAP"
+  ],
+  "author": "Cory Guynn",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "express3-handlebars": "^0.5.2",
+    "jsonfile": "^2.2.3",
+    "path": "^0.12.7"
+  }
+}
