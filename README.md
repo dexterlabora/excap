@@ -41,8 +41,8 @@ Clone the app
 
 npm install
 
-run app.js
-   (ideally with pm2..   pm2 start app.js --name excap )
+node app.js        or as a service by:  pm2 start app.js --name excap
+   
 
 #Report
 You can see the session data by going to
