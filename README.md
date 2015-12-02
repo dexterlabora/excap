@@ -54,7 +54,8 @@ http://yourserver/excapData/excap
 Note: You should run this using SSL. The reports are not protected in anyway, so either sort that out or disable the mongodb REST route.
 
 
-#More Details and other projects
+#Written by
+Cory Guynn, 2015
 www.InternetOfLego.com
 
 
