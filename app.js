@@ -136,6 +136,10 @@ app.get('/click', function (req, res) {
   req.session.client_mac = req.query.client_mac;
   req.session.splashclick_time = new Date().toString();
 
+  // success page options instead of continuing on to intended url
+  req.session.success_url = 'http://' + req.session.host + "/success";
+  req.session.continue_url = req.query.user_continue_url;
+
   // display session data for debugging purposes
   console.log("Session data at click page = " + util.inspect(req.session, false, null));
 
@@ -155,9 +159,13 @@ app.post('/login', function(req, res){
     // write to console
   console.log("Session data at login page = " + util.inspect(req.session, false, null));
 
+  // forward request onto Cisco Meraki to grant access
+    // *** Send user directly to intended page : user_continue_url
+  //res.writeHead(302, {'Location': req.session.base_grant_url + "?continue_url="+req.session.user_continue_url});
 
-  // forward request onto Cisco Meraki to grant access.
-  res.writeHead(302, {'Location': req.session.base_grant_url + "?continue_url="+req.session.user_continue_url});
+    // *** Send user to success page : success_url
+  res.writeHead(302, {'Location': req.session.base_grant_url + "?continue_url="+req.session.success_url});
+
   res.end();
 
 });
