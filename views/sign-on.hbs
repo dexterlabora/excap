@@ -16,6 +16,10 @@
       <form action={{login_url}} method="post" class="form col-md-12 center-block">
         <input type="hidden" name="success_url" value={{success_url}} />
         <div class="form-group">
+          <div class="error">
+            {{recent_error}}
+          </div>
+            
           <input class="form-control input-lg" type="text" name="username" placeholder="Username or email">
           <i class="icon-user icon-large"></i>
         </div>

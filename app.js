@@ -127,7 +127,6 @@ app.use('/excapData', expressMongoRest('mongodb://localhost:27017/test'));
 app.get('/click', function (req, res) {
 
   // extract parameters (queries) from URL
-  // this has been done literaly to illustrate what data is being exchanged
   req.session.host = req.headers.host;
   req.session.base_grant_url = req.query.base_grant_url;
   req.session.user_continue_url = req.query.user_continue_url;
@@ -137,7 +136,7 @@ app.get('/click', function (req, res) {
   req.session.splashclick_time = new Date().toString();
 
   // success page options instead of continuing on to intended url
-  req.session.success_url = 'http://' + req.session.host + "/success";
+  req.session.success_url = req.protocol + "://" + req.session.host + "/success";
   req.session.continue_url = req.query.user_continue_url;
 
   // display session data for debugging purposes
@@ -170,6 +169,7 @@ app.post('/login', function(req, res){
 
 });
 
+
 // ################################################################
 // Sign-on Splash Page
 // ################################################################
@@ -187,16 +187,15 @@ app.get('/signon', function (req, res) {
   req.session.ap_tags = req.query.ap_tags;
   req.session.client_ip = req.query.client_ip;
   req.session.client_mac = req.query.client_mac;
-  req.session.success_url = 'http://' + req.session.host + "/success";
+  req.session.success_url = req.protocol + "://" + req.session.host + "/success";
   req.session.signon_time = new Date();
+  req.session.recent_error = req.query.error_message;
+  
+  console.log(req.session.recent_error);
 
   // do something with the session and form data (i.e. console, database, file, etc. )
     // display data for debugging purposes
   console.log("Session data at signon page = " + util.inspect(req.session, false, null));
-    // write to log file
-  //jsonfile.writeFile(logPath, req.session, function (err) {
-    //console.log(err);
-  //})
 
   // render login page using handlebars template and send in session data
   res.render('sign-on', req.session);
@@ -209,7 +208,8 @@ app.get('/signon', function (req, res) {
 app.get('/success', function (req, res) {
   // extract parameters (queries) from URL
   req.session.host = req.headers.host;
-  req.session.logout_url = req.query.logout_url + "&continue_url=" + 'http://' + req.session.host + "/logout";
+  //req.session.logout_url = req.query.logout_url;
+  req.session.logout_url = req.query.logout_url + "&continue_url=" + req.protocol + "://" + req.session.host + "/logout";
   req.session.success_time = new Date();
 
   // do something with the session data (i.e. console, database, file, etc. )
@@ -233,7 +233,7 @@ app.get('/logout', function (req, res) {
 
   // extract parameters (queries) from URL
   req.session.host = req.headers.host;
-  req.session.logout_url = req.query.logout_url + "?continue_url=" + 'http://' + req.session.host + "/logged-out";
+  req.session.logout_url = req.query.logout_url + "&continue_url=" + req.protocol + "://" + req.session.host + "/logged-out";
 
   // do something with the session data (i.e. console, database, file, etc. )
     // display data for debugging purposes

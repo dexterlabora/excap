@@ -272,3 +272,8 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
     box-sizing: border-box;
   }
 }
+
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
