@@ -34,14 +34,23 @@ http://yourserver/signon
 http://yourserver/click
 
 
-#Run
+#Install
 
+### Install MongoDB
+https://docs.mongodb.com/manual/installation/
 
-Clone the app
+### Clone the ExCap app into your intended directory 
+```
+mkdir excap
+cd excap
+git clone https://github.com/dexterlabora/excap.git
+```
 
-npm install
+### Install any missing dependencies
+`npm install`
 
-node app.js        or as a service by:  pm2 start app.js --name excap
+### Run the app
+`node app.js`       or as a service using PM2:  `pm2 start app.js --name excap`
    
 
 #Report
