@@ -1,39 +1,36 @@
-
 <div id="content">
   <div id="container">
     <div class="header">
       <div id="icon_cell">
-        <img class="text-center" src="/img/barista-lego.jpg" style="width:40%; margin:10px;">
+        <img class="text-center" src="/img/logo.png" style="width:40%; margin:10px;">
       </div>
     </div>
-
     <div id="continue">
-      <h1>IoL Cafe</h1>
-      <p>Please enjoy our complimentary WiFi and a cup of joe.</p>
-      <p>
-        Brought to you by <a href="http://www.internetoflego.com" target="blank">InternetOfLego.com</a>
-      </p>
+      <p>Enter your name</p>
       <form action="/login" method="post" class="form col-md-12 center-block">
         <div class="form-group">
-          <input class="form-control input-lg" placeholder="Username" type="text" name="form1[username]" required>
-          <input class="form-control input-lg" placeholder="Email" type="text" name="form1[email]" required>
+          <input class="form-control input-lg" placeholder="Name" type="text" name="user[name]" id="name" required="">
+          </input>
+        </div>
+        <div class="form-group">
+          <input class="form-control input-lg" placeholder="Tags" type="text" name="user[tags]">
+          </input>
+        </div>
+        <div class="form-group">
+          <label for="mood">Mood</label>
+          <select id="mood" class="form-control" name="user[mood]">
+            <option value="great">Great</option>
+            <option value="ok">OK</option>
+            <option value="not-good">Not good</option>
+          </select>
         </div>
 
         <div class="form-group">
           <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-
-          <span class="pull-left"><a href="#">Terms and Conditions</a></span>
-
         </div>
       </form>
-
-
     </div>
   </div>
-  <div class="footer">
-    <p>Your IP: {{client_ip}}</p>
-    <p>Your MAC: {{client_mac}}</p>
-    <p>AP MAC: {{node_mac}}</p>
     <h3>POWERED BY</h3>
     <img class="text-center" src="/img/cisco-meraki-gray.png" style="width:10%; margin:10px;">
   </div>

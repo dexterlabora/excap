@@ -163,30 +163,31 @@ app.get('/click', function (req, res) {
 app.post('/login', function(req, res){
 
   // save data from HTML form
-  var form = req.body.form1;
-  var username = form.username;
-  var userEmail = form.email;
+  var userForm = req.body.user;
+  var userName = userForm.name;
+  var userTags = (userForm.tags || '').split(',');
+  var userMood = userForm.mood;
 
-  var payload = {};
+  var user = {
+    name: userName,
+    tags: userTags,
+    mood: userMood
+  };
 
-  req.session.form = form;
+  req.session.user = user;
   req.session.splashlogin_time = new Date().toString();
 
-  // do something with the session and form data (i.e. console, database, file, etc. )
-    // write to console
   console.log("Session data at login page = " + util.inspect(req.session, false, null));
-  console.log("Form = " + util.inspect(form, false, null));
+  console.log("User = " + util.inspect(user, false, null));
 
-  logsRef.child(username).set({
-    email: userEmail
-  });
+  logsRef.child(user.name).set(user);
 
   // forward request onto Cisco Meraki to grant access
-    // *** Send user directly to intended page : user_continue_url
-  //res.writeHead(302, {'Location': req.session.base_grant_url + "?continue_url="+req.session.user_continue_url});
+  // *** Send user directly to intended page : user_continue_url
+  res.writeHead(302, {'Location': req.session.base_grant_url + "?continue_url="+req.session.user_continue_url});
 
-    // *** Send user to success page : success_url
-  res.writeHead(302, {'Location': req.session.base_grant_url + "?continue_url="+req.session.success_url});
+  // *** Send user to success page : success_url
+  // res.writeHead(302, {'Location': req.session.base_grant_url + "?continue_url="+req.session.success_url});
 
   res.end();
 
