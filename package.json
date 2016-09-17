@@ -25,6 +25,7 @@
     "express-mongo-rest": "^0.1.1",
     "express-session": "^1.12.1",
     "express3-handlebars": "^0.5.2",
+    "firebase": "^3.4.0",
     "mongodb": "^2.0.49",
     "path": "^0.12.7",
     "session": "^0.1.0"

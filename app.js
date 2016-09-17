@@ -49,6 +49,7 @@ var util = require('util');
 var express = require('express');
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
+var firebase = require('firebase');
 
 // create the web app
 var app = express();
@@ -58,6 +59,16 @@ var store = new MongoDBStore({
     uri: 'mongodb://localhost:27017/test',
     collection: 'excap'
 });
+
+// Initialize Firebase
+// Initialize the app with no authentication
+firebase.initializeApp({
+  databaseURL: "https://linkmetoo-30f09.firebaseio.com"
+});
+
+// The app only has access to public data as defined in the Security Rules
+var db = firebase.database();
+var logsRef = db.ref("/logs");
 
 // Catch errors
 store.on('error', function(error) {
@@ -140,7 +151,8 @@ app.get('/click', function (req, res) {
   req.session.continue_url = req.query.user_continue_url;
 
   // display session data for debugging purposes
-  console.log("Session data at click page = " + util.inspect(req.session, false, null));
+  var sessionData = util.inspect(req.session, false, null)
+  console.log("Session data at click page = " + sessionData);
 
   // render login page using handlebars template and send in session data
   res.render('click-through', req.session);
@@ -151,12 +163,23 @@ app.get('/click', function (req, res) {
 app.post('/login', function(req, res){
 
   // save data from HTML form
-  req.session.form = req.body.form1;
+  var form = req.body.form1;
+  var username = form.username;
+  var userEmail = form.email;
+
+  var payload = {};
+
+  req.session.form = form;
   req.session.splashlogin_time = new Date().toString();
 
   // do something with the session and form data (i.e. console, database, file, etc. )
     // write to console
   console.log("Session data at login page = " + util.inspect(req.session, false, null));
+  console.log("Form = " + util.inspect(form, false, null));
+
+  logsRef.child(username).set({
+    email: userEmail
+  });
 
   // forward request onto Cisco Meraki to grant access
     // *** Send user directly to intended page : user_continue_url
@@ -190,7 +213,7 @@ app.get('/signon', function (req, res) {
   req.session.success_url = req.protocol + "://" + req.session.host + "/success";
   req.session.signon_time = new Date();
   req.session.recent_error = req.query.error_message;
-  
+
   console.log(req.session.recent_error);
 
   // do something with the session and form data (i.e. console, database, file, etc. )
