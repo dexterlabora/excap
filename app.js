@@ -27,7 +27,7 @@ www.InternetOfLego.com
 // ################################################################
 
 // web port
-var port = 80;
+var port = 8181;
 
 // ExCap parameters and form data object
 //var session = {};
@@ -68,7 +68,7 @@ firebase.initializeApp({
 
 // The app only has access to public data as defined in the Security Rules
 var db = firebase.database();
-var logsRef = db.ref("/logs");
+var usersRef = db.ref("/users");
 
 // Catch errors
 store.on('error', function(error) {
@@ -165,7 +165,7 @@ app.post('/login', function(req, res){
   // save data from HTML form
   var userForm = req.body.user;
   var userName = userForm.name;
-  var userTags = (userForm.tags || '').split(',');
+  var userTags = (userForm.tags || '').replace(/\s+/g,'').split(',');
   var userMood = userForm.mood;
 
   var user = {
@@ -184,7 +184,7 @@ app.post('/login', function(req, res){
   console.log("Session data at login page = " + util.inspect(req.session, false, null));
   console.log("User = " + util.inspect(user, false, null));
 
-  logsRef.child(user.name).set(user);
+  usersRef.child(user.name).set(user);
 
   // forward request onto Cisco Meraki to grant access
   // *** Send user directly to intended page : user_continue_url
