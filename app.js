@@ -27,7 +27,7 @@ www.InternetOfLego.com
 // ################################################################
 
 // web port
-var port = 8181;
+var port = 80;
 
 // ExCap parameters and form data object
 //var session = {};
