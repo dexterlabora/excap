@@ -171,7 +171,11 @@ app.post('/login', function(req, res){
   var user = {
     name: userName,
     tags: userTags,
-    mood: userMood
+    mood: userMood,
+    node_mac: req.session.node_mac,
+    client_ip: req.session.client_ip,
+    client_mac: req.session.client_mac,
+    splashclick_time: req.session.splashclick_time
   };
 
   req.session.user = user;
