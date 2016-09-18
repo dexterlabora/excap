@@ -167,6 +167,7 @@ app.post('/login', function(req, res){
   var userName = userForm.name;
   var userTags = (userForm.tags || '').replace(/\s+/g,'').split(',');
   var userMood = userForm.mood;
+  var userClientMac = req.session.client_mac || 'external';
 
   var user = {
     name: userName,
@@ -174,7 +175,7 @@ app.post('/login', function(req, res){
     mood: userMood,
     node_mac: req.session.node_mac,
     client_ip: req.session.client_ip,
-    client_mac: req.session.client_mac,
+    client_mac: userClientMac,
     splashclick_time: req.session.splashclick_time
   };
 
@@ -184,7 +185,7 @@ app.post('/login', function(req, res){
   console.log("Session data at login page = " + util.inspect(req.session, false, null));
   console.log("User = " + util.inspect(user, false, null));
 
-  usersRef.child(user.name).set(user);
+  usersRef.child(userClientMac).set(user);
 
   // forward request onto Cisco Meraki to grant access
   // *** Send user directly to intended page : user_continue_url
