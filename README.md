@@ -4,13 +4,13 @@ Overview
 
 This Node.JS applications provides an example of the ExCAP interface for delivering a custom Captive Portal / Splash Page for Cisco Meraki access points.
 
-###Complete write-up: 
+### Complete write-up: 
 http://www.internetoflego.com/wifi-hotspot-cisco-meraki-excap-nodejs/
 
-###Official ExCap API documentation: 
+### Official ExCap API documentation: 
 https://meraki.cisco.com/lib/pdf/meraki_whitepaper_captive_portal.pdf
 
-#Usage
+# Usage
 
 Configure the Wi-Fi SSID
 
@@ -28,17 +28,17 @@ Dashboard --> Wireless --> Configure --> Splash Page Select: Use custom URL
 
 Enter the URL for the splash page. This flow provides two options, Sign-on and Click-through.
 
-#Sign-on
+# Sign-on
 
 http://yourserver/signon
 
 
-#Click-through
+# Click-through
 
 http://yourserver/click
 
 
-#Install
+# Install
 
 ### Install MongoDB
 https://docs.mongodb.com/manual/installation/
@@ -57,17 +57,17 @@ git clone https://github.com/dexterlabora/excap.git
 `node app.js`       or as a service using PM2:  `pm2 start app.js --name excap`
    
 
-#Report
+# Report
 You can see the session data by going to
 
 http://yourserver/excapData/excap
 
-#Enjoy!
+# Enjoy!
 
 Note: You should run this using SSL. The reports are not protected in anyway, so either sort that out or disable the mongodb REST route.
 
 
-#Written by
+### Written by
 Cory Guynn, 2015
 www.InternetOfLego.com
 
