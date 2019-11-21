@@ -2,45 +2,62 @@ html { font-size: 100%;-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100
 form { margin: 0; }
 label { cursor: pointer; }
 button, input {
-  -webkit-appearance:none;
-  font-size: 100%;
-  margin: 0;
-  vertical-align: baseline;
-  *vertical-align: middle;
-  line-height: normal;
-  *overflow: visible;
+  width: 11%;
 }
-button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
 
-a, a:visited, a:active {color: #ffff; text-decoration: none;}
+button {
+  height: 35px;
+  border: none;
+  background: #31313e;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: white;
+  font-family: Raleway, helvetica, helvetica neue, verdana, tahoma, sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  text-align: center;
+  width: 23%;
+  min-width: 65px
+}
+
+.button1 {background-color: #c2d6e8; color: #3c3b3b; font-weight: 800} /* Green */
+.button2 {background-color: #c2d6e8; color: #3c3b3b; font-weight: 800}/* Yellow */
+.button3 {background-color: #c2d6e8; color: #3c3b3b; font-weight: 800} /* Red */
+
+.button1:hover{background-color: #00E64D}
+.button3:hover{background-color: #F6F06C}
+.button2:hover{background-color: #FD7567}
+
+a, a:visited, a:active {color: #ffffff; text-decoration: none;}
 
 .hidden { display: none; }
 
 body {
   margin: 0;
-  background: #eee;
+  background: #ffffff;
   color: #555;
   font-size: 14px;
-  line-height: 1.4em;
-  font-family: georgia, palatino, serif;
+  line-height: 1em;
+  font-family: Raleway, palatino, serif;
 }
 
 h1, h2,  h3, p, a {
-  font-family: CiscoSans, helvetica, helvetica neue, verdana, tahoma, sans-serif;
+  font-family: Raleway, helvetica, helvetica neue, verdana, tahoma, sans-serif;
 }
 h1 {
-  font-size: 30px;
-  font-weight: 100;
-  line-height: 35px;
-  color: #555;
-  margin: 0 0 1em;
+  font-size: 2.5em;
+  font-weight: 800;
+  line-height: 1.5em;
+  color: #3c3b3b;
+  margin: 0 0;
 }
+
 h2 {
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 1.2em;
+  font-weight: 200;
 }
 h3 {
-  font-size: 9px;
+  font-size: 1.3em;
   font-weight: 400;
   letter-spacing: 1px;
   color: #888;
@@ -150,18 +167,6 @@ p{
 
 #email_field {
   margin-bottom: 1.5em;
-}
-
-.button {
-  padding: 1em 2em;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  display: inline-block;
-  margin: 1em 0;
-}
-
-.button:hover {
-  opacity: .85;
 }
 
 .form_links a {
@@ -276,4 +281,86 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 .error {
     color: #D8000C;
     background-color: #FFBABA;
+}
+
+#masthead {
+  height: 15%;
+  width: 100%;
+  position: relative;
+  background: #c2d6e8;
+  border-bottom: 0.5px solid #aec4d8;
+}
+
+#masthead-content {
+  margin: 0 auto;
+  position: relative;
+  width: 80%;
+  height: 100%;
+}
+
+#masthead-content img {
+  float: left;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-right: 5%;
+  height: 75%;
+  margin-left: auto;
+}
+
+#content {
+  width: 94%;
+  margin: 3%;
+  padding: 3%;
+  box-sizing: border-box;
+  border-radius: 9px;
+  background: #FAFAFA;
+}
+
+#mac-address {
+  margin-bottom: 10px;
+}
+
+#mac-field {
+  width: 30%;
+  height: 35px;
+  margin-bottom: 20px;
+  padding-left: 13px;
+  border: 1px solid #E6E6E6;
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-family: Raleway, helvetica, helvetica neue, verdana, tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  min-width: 136px;
+}
+
+#map-wrapper {
+  padding-top: 2%;
+  width: 100%;
+}
+
+#map-canvas {
+  height:65%;
+  width: 100%;
+}
+
+
+#last-mac {
+  color: #6B6B6B;
+  width: 100%;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.small {
+  color: #6B6B6B;
+  font-weight: 400;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: 600;
 }
